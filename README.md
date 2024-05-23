@@ -43,13 +43,8 @@ To run this project, you need to have the Go programming language installed on y
 Users can connect to the chat room using Netcat or similar tools. Open a terminal and run:
 ```sh
 nc localhost 8989
-
-Sure, here's the content in Markdown format:
-
-```markdown
-# Netcat Chat Room
-
 Replace `8989` with the port number specified when running the server.
+```
 
 ## Usage
 
