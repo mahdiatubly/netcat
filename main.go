@@ -43,6 +43,18 @@ func broadcastMessage(message, clientName string) {
 	}
 	mu.Lock()
 	defer mu.Unlock()
+
+	filename := "chat_history.txt"
+	file, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatalf("Failed to open file: %s", err)
+	}
+	defer file.Close()
+	if _, err := file.WriteString(formattedMessage); err != nil {
+		log.Fatalf("Failed to write to file: %s", err)
+	}
+
+	fmt.Print(formattedMessage)
 	for _, client := range clients {
 		client.Conn.Write([]byte(formattedMessage))
 	}
